@@ -1,5 +1,6 @@
-#ifndef MAT
-#define MAT
+#ifndef __MAT__
+#define __MAT__
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -8,17 +9,29 @@
 typedef struct Matrix {
     unsigned int rows;
     unsigned int cols;
-    float *data;
+    float **data;
 } Mat;
 
-float uniform_rand(float left, float right);
-int index_to_cordinate(unsigned int, unsigned int, unsigned int);
-    
-Mat *new(unsigned int, unsigned int);
-void print(Mat *);
+float uniform_rand(float, float);
+
+Mat *new_mat(unsigned int, unsigned int);
+
+void delete_mat(Mat*);
+
+void print_mat(Mat *);
+
 Mat *new_rand_mat(unsigned int, unsigned int, int, int);
-Mat * dot_product(Mat *, Mat *);
-Mat * add_mat(Mat *, Mat *);
-Mat * add_num(Mat *, float);
+
+Mat *dot_product(Mat *, Mat *);
+
+Mat *add_mat(Mat *, Mat *);
+
+Mat *add_num(Mat *, float);
+
+void set_mat_val_at(Mat *, unsigned int, unsigned int, float);
+
+float get_mat_val_at(Mat *, unsigned int, unsigned int);
+
+Mat *clone_mat(Mat *);
 
 #endif
