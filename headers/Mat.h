@@ -28,10 +28,17 @@ Mat *add_mat(Mat *, Mat *);
 
 Mat *add_num(Mat *, float);
 
+float mat_sum(Mat *);
+
+float mat_avg(Mat *);
+
 void set_mat_val_at(Mat *, unsigned int, unsigned int, float);
 
 float get_mat_val_at(Mat *, unsigned int, unsigned int);
 
 Mat *clone_mat(Mat *);
+
+Mat *clone_mat_at(Mat *, unsigned int, unsigned int, unsigned int, unsigned int);
+
 
 #endif

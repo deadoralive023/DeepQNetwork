@@ -2,18 +2,26 @@
 #include <stdlib.h>
 #include "./headers/Mat.h"
 #include "./headers/DenseLayer.h"
+#include "./headers/Conv2d.h"
 #include "./headers/utils.h"
 
 int main(){
     srand(time(0));
-    Mat * matrix1 = new_rand_mat(2, 2, 0, 1);
+
+    //Mat * matrix1 = new_rand_mat(2, 2, 0, 1);
     //Mat * matrix2 = new_rand_mat(2, 2, 0, 1);
-    print(matrix1, MAT);
+    //print(matrix1, MAT);
     //print_mat(matrix2);
     //Mat * new_mat_dot = dot_product(matrix1, matrix2);
     //print_mat(new_mat_dot);
-    DenseLayer *layer = new_dense_layer(3, 3);
-    print(layer, DL);
+    //DenseLayer *layer = new_dense_layer(3, 3);
+    //print(layer, DL);
+    pair kernel_size;
+    kernel_size.rows = 3;
+    kernel_size.cols = 3;
+    Conv2dLayer *conv_layer = new_conv2d_layer(2, 2,  kernel_size, 0, 1);
+    print(conv_layer, C2DL);
+    
     /*Mat *input = new_rand_mat(3, 1, 0, 1);
     print_mat(input);
     DenseLayer *prop_layer = f_prop_dense_layer(layer, input);

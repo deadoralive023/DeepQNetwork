@@ -81,7 +81,7 @@ Mat * add_mat(Mat *mat1, Mat *mat2){
     return new_mat_ptr;
 }
 
-Mat * add_num(Mat *mat, float num){
+Mat *add_num(Mat *mat, float num){
     Mat *new_mat_ptr = new_mat(mat->rows, mat->cols);
     for(unsigned int row = 0; row < mat->rows; row++){
         for(unsigned int col = 0; col < mat->cols; col++){
@@ -90,6 +90,23 @@ Mat * add_num(Mat *mat, float num){
     }
     return new_mat_ptr;
 }
+
+float mat_sum(Mat *mat){
+    float sum  = 0;
+    for(unsigned int row = 0; row < mat->rows; row++){
+        for(unsigned int col = 0; col < mat->cols; col++){
+            sum += get_mat_val_at(mat, row, col);
+        }
+    }
+    return sum;
+}
+
+float mat_avg(Mat *mat){
+    float sum = mat_sum(mat);
+    return (sum / (mat->rows * mat->cols));
+}
+
+
 
 void set_mat_val_at(Mat *self, unsigned int row, unsigned int col, float val){
     if(row >= self->rows) { printf("Error: Invalid row index"); return; }
@@ -112,5 +129,21 @@ Mat *clone_mat(Mat *mat){
     }
     return cloned_mat;
 }
+
+Mat *clone_mat_at(Mat *mat, unsigned int x, unsigned int y, unsigned int width, unsigned int height){
+    if(width <= x){ printf("Error: width must be greater than x"); return NULL; }
+    if(height <= y){ printf("Error: height must be greater than y"); return NULL; }
+    if(x >= mat->cols){ printf("Error: width must be greater than x"); return NULL; }
+    if(y >= mat->rows){ printf("Error: height must be greater than y"); return NULL; }
+
+    Mat *cloned_mat = new_mat(width - x, width - y);
+    for(unsigned int row = x; row < width; row++){
+        for(unsigned int col = y; col < height; col++){
+            set_mat_val_at(cloned_mat, row, col, mat->data[row][col]);
+        }
+    }
+    return cloned_mat;
+}
+
 
 
